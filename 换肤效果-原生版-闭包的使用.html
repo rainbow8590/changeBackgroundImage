@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		background: url(images/bd1.jpg) no-repeat;
+	}
+	div{
+		width: 100%;
+		height: 160px;
+		background: rgba(255,255,255,0.5);		
+		margin: 20px auto;
+	}
+	ul{
+		list-style: none;
+		overflow: hidden;
+		padding: 15px;
+		padding-left: 185px;
+	}
+	ul li{
+		display: inline-block;
+		text-align: center;
+	}
+	ul li img{
+		height: 120px;
+		border: 5px solid rgba(255,255,255,0.5)
+	}
+	</style>
+</head>
+<body>
+	<div>
+	<ul>
+		<li><img src="images/bd1.jpg" alt=""></li>
+		<li><img src="images/bd2.jpg" alt=""></li>
+		<li><img src="images/bd3.jpg" alt=""></li>
+		<li><img src="images/bd4.jpg" alt=""></li>
+		<li><img src="images/bd5.jpg" alt=""></li>
+	</ul>
+	</div>
+	<script>
+
+	var lis = document.getElementsByTagName('li');
+
+	function change(num){
+		document.body.style.background = 'url(images/bd'+ (num+1) +'.jpg) no-repeat';
+	}
+
+	/*lis[0].onclick = function(){
+		change(0);
+	}
+	lis[1].onclick = function(){
+		change(1);
+	}
+	lis[2].onclick = function(){
+		change(2);
+	}
+	lis[3].onclick = function(){
+		change(3);
+	}
+	lis[4].onclick = function(){
+		change(4);
+	}
+*/
+
+	//方法一： 使用自定义属性 保存i值
+	for(var i = 0 ; i < lis.length ; i++){
+		lis[i].index = i;
+		lis[i].onclick = function(){
+			document.body.style.background = 'url(images/bd'+ (this.index+1) +'.jpg) no-repeat';
+			console.log(this.index)
+		}
+	}
+
+	
+	//方法二：闭包
+	// for(var i = 0 ; i < lis.length ; i++) {
+	// 	lis[i].onclick=function(i){
+	// 		return function(){
+	// 			document.body.style.background = 'url(images/bd'+ (i+1) +'.jpg) no-repeat';
+	// 			console.log(i)
+	// 		}
+	// 	}(i);
+	// }
+
+
+	//方法三：自执行函数
+	// for(var i = 0 ; i < lis.length ; i++){
+	// 	(function(n){
+	// 		lis[n].onclick=function(){
+	// 			document.body.style.background = 'url(images/bd'+ (n+1) +'.jpg) no-repeat';
+	// 		}
+	// 	})(i)
+	// }
+
+
+	//方法四： ES6新语法 let
+	// for(let i=0;i<lis.length;i++){
+	// 	lis[i].onclick = function(){
+	// 		console.log(i)
+	// 		document.body.style.background = 'url(images/bd'+ (i+1) +'.jpg) no-repeat';
+	// 	}
+	// }
+
+
+	
+	//面试题
+	// for(var i=0;i<5;i++){
+	// 	(function(n){
+	// 	 setTimeout(function(){
+	// 		console.log(n)
+	// 	},1000*n)
+	// 	})(i)	
+	// }
+
+
+	
+
+	</script>
+</body>
+</html>
